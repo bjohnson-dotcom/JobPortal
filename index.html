@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workshop App UI — Starter</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="logo">🔧</span>
+      <h1>Workshop Portal</h1>
+    </div>
+    <div class="searchbar">
+      <input id="searchInput" type="search" placeholder="Search jobs, customers, order #…" />
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="jobs">Jobs</button>
+    <button class="tab" data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="tabpanel active">
+      <div class="grid">
+        <div class="card">
+          <h3>Jobs in Progress</h3>
+          <p class="stat" id="statInProgress">—</p>
+        </div>
+        <div class="card">
+          <h3>Urgent</h3>
+          <p class="stat" id="statUrgent">—</p>
+        </div>
+        <div class="card">
+          <h3>Awaiting QC</h3>
+          <p class="stat" id="statQC">—</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOBS -->
+    <section id="jobs" class="tabpanel">
+      <div class="jobs-layout">
+        <aside class="jobs-list" id="jobsList">
+          <!-- Populated by JS -->
+        </aside>
+        <section class="job-detail" id="jobDetail">
+          <div class="empty">
+            <p>Select a job to see details.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settings" class="tabpanel">
+      <div class="card">
+        <h3>Settings</h3>
+        <div class="settings-grid">
+          <label class="field">
+            <span>Workshop Name</span>
+            <input type="text" value="Cullen Jewellery" />
+          </label>
+          <label class="field">
+            <span>Refresh (mins)</span>
+            <input type="number" value="30" min="1" />
+          </label>
+          <label class="field">
+            <span>Theme</span>
+            <select>
+              <option>Light</option>
+              <option>Dark</option>
+              <option>System</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ISSUE TRACKER MODAL -->
+  <dialog id="issueModal">
+    <form method="dialog" class="modal">
+      <header>
+        <h3>Track Issue</h3>
+      </header>
+      <label class="field">
+        <span>Job ID</span>
+        <input id="issueJobId" type="text" readonly />
+      </label>
+      <label class="field">
+        <span>Stage</span>
+        <select id="issueStage">
+          <option>QC</option>
+          <option>Setting</option>
+          <option>Repair</option>
+          <option>Polishing</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Issue description</span>
+        <textarea id="issueDescription" rows="4" placeholder="Describe the problem…"></textarea>
+      </label>
+      <footer class="actions">
+        <button value="cancel" class="btn ghost">Cancel</button>
+        <button id="issueSubmit" value="default" class="btn primary">Submit</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <template id="jobCardTemplate">
+    <article class="job-card">
+      <header class="job-head">
+        <div class="customer">
+          <strong class="customer-name"></strong>
+          <span class="order-num"></span>
+        </div>
+        <div class="labels"></div>
+      </header>
+      <div class="job-meta">
+        <span class="badge stage"></span>
+        <span class="badge status"></span>
+      </div>
+    </article>
+  </template>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
